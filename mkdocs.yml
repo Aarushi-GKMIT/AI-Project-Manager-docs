@@ -1,0 +1,37 @@
+site_name: AI Project Manager Documentation
+site_description: Communication Intelligence Module Documentation
+site_author: AI Project Manager Team
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: blue
+
+nav:
+  - Introduction: introduction.md
+  - Components of AI Project Manager: components.md
+  - Communication Intelligence Module: communication_intelligence.md
+  - Slack Workspace Strategy: slack_strategy.md
+  - End to End Workflow: workflow.md
+  - Message Processing: message_processing.md
+  - Urgent Issue Detection: urgent_detection.md
+  - Knowledge Base & RAG: knowledge_base.md
+  - System Diagrams: diagrams.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
