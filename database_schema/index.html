@@ -551,6 +551,11 @@ These tasks are automatically extracted from Slack standup communication using t
 <td>Unique identifier for the task</td>
 </tr>
 <tr>
+<td>assignee</td>
+<td>VARCHAR</td>
+<td>Name of the Person to whom the task is assigned</td>
+</tr>
+<tr>
 <td>content</td>
 <td>TEXT</td>
 <td>Description of the task</td>
@@ -568,7 +573,7 @@ These tasks are automatically extracted from Slack standup communication using t
 <tr>
 <td>status</td>
 <td>VARCHAR</td>
-<td>Task status (Open, In Progress, Completed)</td>
+<td>Task status (New, In Progress, Completed)</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -616,6 +621,11 @@ These tasks are automatically extracted from Slack standup communication using t
 <td>Description of the blocker</td>
 </tr>
 <tr>
+<td>Person_Blocked</td>
+<td>VARCHAR</td>
+<td>Name of the user who reported the blocker</td>
+</tr>
+<tr>
 <td>sender_slack_id</td>
 <td>VARCHAR</td>
 <td>Slack ID of the user who reported the blocker</td>
@@ -633,7 +643,7 @@ These tasks are automatically extracted from Slack standup communication using t
 <tr>
 <td>status</td>
 <td>VARCHAR</td>
-<td>Status of the blocker (Open, In Progress, Resolved)</td>
+<td>Status of the blocker (Open, Resolved)</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -676,6 +686,11 @@ These tasks are automatically extracted from Slack standup communication using t
 <td>Daily update content</td>
 </tr>
 <tr>
+<td>sender_name</td>
+<td>VARCHAR</td>
+<td>name of the sender</td>
+</tr>
+<tr>
 <td>sender_slack_id</td>
 <td>VARCHAR</td>
 <td>Slack ID of the sender</td>
@@ -712,7 +727,7 @@ These tasks are automatically extracted from Slack standup communication using t
 
     USERS {
         UUID user_id PK
-        VARCHAR slack_id
+        UUID slack_id
         VARCHAR name
         VARCHAR email
         VARCHAR role
@@ -756,6 +771,7 @@ These tasks are automatically extracted from Slack standup communication using t
 
     TASKS {
         UUID id PK
+        VARCHAR assignee
         TEXT content
         VARCHAR sender_slack_id
         UUID project_id FK
@@ -769,6 +785,7 @@ These tasks are automatically extracted from Slack standup communication using t
     BLOCKERS {
         UUID id PK
         TEXT content
+        VARCHAR Person_Blocked
         VARCHAR sender_slack_id
         UUID project_id FK
         VARCHAR severity
@@ -781,6 +798,7 @@ These tasks are automatically extracted from Slack standup communication using t
     DAILY_UPDATES {
         UUID id PK
         TEXT content
+        VARCHAR sender_name
         VARCHAR sender_slack_id
         UUID project_id FK
         TEXT summary
@@ -795,12 +813,12 @@ These tasks are automatically extracted from Slack standup communication using t
 
     WORKSPACE ||--o{ PROJECT : contains
 
-    PROJECT ||--o{ PROJECT_CHANNEL_MAPPING : mapped_to
-    PROJECT ||--o{ TASKS : has
-    PROJECT ||--o{ BLOCKERS : has
-    PROJECT ||--o{ DAILY_UPDATES : has
+    PROJECT ||--o{ PROJECT_CHANNEL_MAPPING : has
+    PROJECT ||--o{ TASKS : contains
+    PROJECT ||--o{ BLOCKERS : contains
+    PROJECT ||--o{ DAILY_UPDATES : contains
 
-    PROJECT_CHANNEL_MAPPING ||--o{ CHANNEL_CONVERSATION : contains_messages</code></pre>
+    PROJECT_CHANNEL_MAPPING ||--o{ CHANNEL_CONVERSATION : stores</code></pre>
 
 
 
