@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../components/">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../slack_strategy/">
+        <link rel="next" href="../database_schema/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Communication Intelligence Module - AI Project Manager Documentation</title>
+        <title>Communication Intelligence - AI Project Manager Documentation</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Communication Intelligence Module
+              Communication Intelligence
             
           </span>
         </div>
@@ -225,28 +225,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Components of AI Project Manager
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -264,7 +242,7 @@
   
   
   <span class="md-ellipsis">
-    Communication Intelligence Module
+    Communication Intelligence
     
   </span>
   
@@ -277,7 +255,7 @@
   
   
   <span class="md-ellipsis">
-    Communication Intelligence Module
+    Communication Intelligence
     
   </span>
   
@@ -300,18 +278,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#responsibilities" class="md-nav__link">
+  <a href="#1-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Responsibilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
+      1. Overview
     </span>
   </a>
   
@@ -332,122 +301,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../slack_strategy/" class="md-nav__link">
+      <a href="../database_schema/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Slack Workspace Strategy
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../workflow/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    End to End Workflow
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../message_processing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Message Processing
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../urgent_detection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Urgent Issue Detection
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../knowledge_base/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Knowledge Base & RAG
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../diagrams/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    System Diagrams
+    Database Schema
     
   </span>
   
@@ -484,18 +343,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#responsibilities" class="md-nav__link">
+  <a href="#1-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Responsibilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
+      1. Overview
     </span>
   </a>
   
@@ -518,41 +368,311 @@
 
 
 <h1 id="communication-intelligence-module">Communication Intelligence Module<a class="headerlink" href="#communication-intelligence-module" title="Permanent link">&para;</a></h1>
-<p>The Communication Intelligence module captures and processes Slack communication.</p>
-<hr />
-<h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
+<h2 id="1-overview">1. Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
+<p>Build an <strong>AI Project Manager Bot for Slack</strong> that:</p>
 <ul>
-<li>Capture Slack messages</li>
-<li>Process communication events</li>
-<li>Extract tasks and blockers</li>
-<li>Detect urgent issues</li>
-<li>Update knowledge base</li>
+<li>Conducts daily standups</li>
+<li>Collects team updates</li>
+<li>Uses an LLM to categorize updates into:<ul>
+<li>Tasks</li>
+<li>Blockers</li>
+<li>Daily Updates</li>
 </ul>
+</li>
+<li>Stores structured information in <strong>PostgreSQL</strong></li>
+<li>Provides an <strong>AI chatbot interface</strong> that answers project questions
+    by querying the database.</li>
+</ul>
+<p>The chatbot interacts directly inside Slack channels.</p>
 <hr />
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h1 id="2-high-level-architecture">2. High-Level Architecture<a class="headerlink" href="#2-high-level-architecture" title="Permanent link">&para;</a></h1>
 <pre class="mermaid"><code>flowchart TD
 
-A[Slack Workspace]
+A[Slack Workspace] --&gt; B[Slack Events API]
 
-A --&gt; B[Slack Events API]
+B --&gt; C[FastAPI Backend]
 
-B --&gt; C[Communication Processor]
+C --&gt; D[Message Storage]
 
-C --&gt; D[Message Database]
+C --&gt; E[Standup Processor]
 
-C --&gt; E[AI Processing Engine]
+E --&gt; F[LLM Categorization]
 
-E --&gt; F[Task Extraction]
+F --&gt; G[(PostgreSQL Database)]
 
-E --&gt; G[Blocker Detection]
+G --&gt; H[Tasks Table]
+G --&gt; I[Blockers Table]
+G --&gt; J[Daily Updates Table]
 
-E --&gt; H[Update Extraction]
+C --&gt; K[AI Chatbot]
 
-F --&gt; I[Knowledge Base]
+K --&gt; L[LLM Tool Calling]
 
-G --&gt; I
+L --&gt; M[get_tasks]
+L --&gt; N[get_blockers]
+L --&gt; O[get_updates]
 
-H --&gt; I</code></pre>
+M --&gt; G
+N --&gt; G
+O --&gt; G
+
+K --&gt; P[LLM Response]
+
+P --&gt; Q[Slack API]
+
+Q --&gt; R[Slack Channel Reply]</code></pre>
+<hr />
+<h1 id="3-slack-workspace-setup">3. Slack Workspace Setup<a class="headerlink" href="#3-slack-workspace-setup" title="Permanent link">&para;</a></h1>
+<h3 id="workspace">Workspace<a class="headerlink" href="#workspace" title="Permanent link">&para;</a></h3>
+<p>Example:</p>
+<p>ai-project-workspace</p>
+<h3 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h3>
+<p>Example channels:</p>
+<ul>
+<li>
+<h1 id="project-glide-health">project-glide-health<a class="headerlink" href="#project-glide-health" title="Permanent link">&para;</a></h1>
+</li>
+</ul>
+<hr />
+<h1 id="4-daily-standup-workflow">4. Daily Standup Workflow<a class="headerlink" href="#4-daily-standup-workflow" title="Permanent link">&para;</a></h1>
+<h2 id="step-1-ai-pm-bot-posts-standup-message">Step 1 -- AI PM Bot Posts Standup Message<a class="headerlink" href="#step-1-ai-pm-bot-posts-standup-message" title="Permanent link">&para;</a></h2>
+<p>At <strong>9:30 AM</strong>, the AI bot posts a standup prompt.</p>
+<p>Example:</p>
+<p>The following team members were assigned tasks:</p>
+<p>Aarushi → Task1</p>
+<p>Akshita → Task2</p>
+<p>Rudraksh → Task3</p>
+<p>Manav → Task4</p>
+<p>Please mention your updates in this thread.</p>
+<p>Slack returns:</p>
+<ul>
+<li>channel_id</li>
+<li>thread_ts (thread timestamp)</li>
+</ul>
+<p>This thread ID is stored.</p>
+<hr />
+<h1 id="5-thread-storage">5. Thread Storage<a class="headerlink" href="#5-thread-storage" title="Permanent link">&para;</a></h1>
+<h2 id="standup-threads-table">Standup Threads Table<a class="headerlink" href="#standup-threads-table" title="Permanent link">&para;</a></h2>
+<p>id   channel_id   thread_ts    date</p>
+<hr />
+<p>1    C123         1712343434   2026-03-09</p>
+<p>All standup replies occur under this thread.</p>
+<hr />
+<h1 id="6-team-members-reply">6. Team Members Reply<a class="headerlink" href="#6-team-members-reply" title="Permanent link">&para;</a></h1>
+<p>Example replies:</p>
+<p>Aarushi: Completed API integration. Working on testing. Blocker: waiting
+for DB schema</p>
+<p>Akshita: Finished UI design. Started frontend integration</p>
+<p>Slack sends events containing:</p>
+<ul>
+<li>message text</li>
+<li>thread_ts</li>
+<li>user id</li>
+</ul>
+<hr />
+<h1 id="7-raw-message-storage">7. Raw Message Storage<a class="headerlink" href="#7-raw-message-storage" title="Permanent link">&para;</a></h1>
+<h2 id="standup_messages">standup_messages<a class="headerlink" href="#standup_messages" title="Permanent link">&para;</a></h2>
+<p>id   user   text                        thread_ts   timestamp</p>
+<hr />
+<p>1    U01    completed api integration   ts          10:00
+  2    U02    finished UI design          ts          10:02</p>
+<p>These messages are processed later by the LLM.</p>
+<hr />
+<h1 id="8-10-am-standup-processing">8. 10 AM Standup Processing<a class="headerlink" href="#8-10-am-standup-processing" title="Permanent link">&para;</a></h1>
+<p>At <strong>10:00 AM</strong>, the backend collects all thread messages and sends them
+to the LLM.</p>
+<h3 id="example-input-to-llm">Example Input to LLM<a class="headerlink" href="#example-input-to-llm" title="Permanent link">&para;</a></h3>
+<p>User: Aarushi</p>
+<p>Message: Completed API integration. Working on testing. Blocker: waiting
+for DB schema.</p>
+<p>User: Akshita</p>
+<p>Message: Finished UI design. Started frontend integration.</p>
+<hr />
+<h1 id="9-llm-categorization-prompt">9. LLM Categorization Prompt<a class="headerlink" href="#9-llm-categorization-prompt" title="Permanent link">&para;</a></h1>
+<p>The LLM is asked to extract structured data.</p>
+<p>Example instruction:</p>
+<p>Return JSON in this format:</p>
+<p>{ "Aarushi": { "tasks": "","blockers": "","daily_updates": "" },
+"Akshita": { "tasks": "","blockers": "","daily_updates": "" } }</p>
+<hr />
+<h1 id="10-example-llm-output">10. Example LLM Output<a class="headerlink" href="#10-example-llm-output" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w"> </span><span class="nt">&quot;Aarushi&quot;</span><span class="p">:{</span>
+<span class="w">   </span><span class="nt">&quot;tasks&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;API integration testing&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;in-progress&quot;</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="nt">&quot;blockers&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;Waiting for DB schema&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;open&quot;</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="nt">&quot;daily_updates&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;Completed API integration&quot;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w"> </span><span class="p">},</span>
+
+<span class="w"> </span><span class="nt">&quot;Akshita&quot;</span><span class="p">:{</span>
+<span class="w">   </span><span class="nt">&quot;tasks&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;Frontend integration&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;in-progress&quot;</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="nt">&quot;blockers&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="kc">null</span>
+<span class="w">   </span><span class="p">},</span>
+<span class="w">   </span><span class="nt">&quot;daily_updates&quot;</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;Finished UI design&quot;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h1 id="11-postgresql-database-design">11. PostgreSQL Database Design<a class="headerlink" href="#11-postgresql-database-design" title="Permanent link">&para;</a></h1>
+<h2 id="users-table">Users Table<a class="headerlink" href="#users-table" title="Permanent link">&para;</a></h2>
+<p>id   slack_user_id   name</p>
+<hr />
+<p>1    U123            Aarushi</p>
+<hr />
+<h2 id="tasks-table">Tasks Table<a class="headerlink" href="#tasks-table" title="Permanent link">&para;</a></h2>
+<p>id   user_id   content                   status        date</p>
+<hr />
+<p>1    1         API integration testing   in-progress   2026-03-09</p>
+<hr />
+<h2 id="blockers-table">Blockers Table<a class="headerlink" href="#blockers-table" title="Permanent link">&para;</a></h2>
+<p>id   user_id   content                 status   date</p>
+<hr />
+<p>1    1         Waiting for DB schema   open     2026-03-09</p>
+<hr />
+<h2 id="daily-updates-table">Daily Updates Table<a class="headerlink" href="#daily-updates-table" title="Permanent link">&para;</a></h2>
+<p>id   user_id   content                     date</p>
+<hr />
+<p>1    1         Completed API integration   2026-03-09</p>
+<hr />
+<h1 id="12-ai-chatbot-architecture">12. AI Chatbot Architecture<a class="headerlink" href="#12-ai-chatbot-architecture" title="Permanent link">&para;</a></h1>
+<p>When a user asks a question in Slack:</p>
+<p>@ai-pm-bot What blockers does Aarushi have?</p>
+<p>Slack sends an <strong>app_mention event</strong> to the backend.</p>
+<hr />
+<h1 id="13-chatbot-processing-flow">13. Chatbot Processing Flow<a class="headerlink" href="#13-chatbot-processing-flow" title="Permanent link">&para;</a></h1>
+<pre class="mermaid"><code>sequenceDiagram
+
+participant User
+participant Slack
+participant Backend
+participant LLM
+participant Database
+
+User-&gt;&gt;Slack: Ask question
+Slack-&gt;&gt;Backend: Event API
+Backend-&gt;&gt;LLM: Send user query
+
+LLM-&gt;&gt;Backend: Tool call decision
+
+Backend-&gt;&gt;Database: Query data
+
+Database-&gt;&gt;Backend: Return results
+
+Backend-&gt;&gt;LLM: Provide tool result
+
+LLM-&gt;&gt;Backend: Final answer
+
+Backend-&gt;&gt;Slack: Send response
+
+Slack-&gt;&gt;User: Display message</code></pre>
+<hr />
+<h1 id="14-llm-tool-calling">14. LLM Tool Calling<a class="headerlink" href="#14-llm-tool-calling" title="Permanent link">&para;</a></h1>
+<p>The chatbot uses tools to query the database.</p>
+<p>Available tools:</p>
+<p>get_tasks(user_name)</p>
+<p>get_blockers(user_name)</p>
+<p>get_updates(user_name)</p>
+<hr />
+<h2 id="example-tool">Example Tool<a class="headerlink" href="#example-tool" title="Permanent link">&para;</a></h2>
+<p>get_blockers("Aarushi")</p>
+<p>SQL Query:</p>
+<p>SELECT content FROM blockers JOIN users ON users.id = blockers.user_id
+WHERE users.name = 'Aarushi' AND status='open'</p>
+<hr />
+<h1 id="15-example-chat">15. Example Chat<a class="headerlink" href="#15-example-chat" title="Permanent link">&para;</a></h1>
+<p>User:</p>
+<p>@ai-pm-bot What is Aarushi working on?</p>
+<p>LLM Tool Call:</p>
+<p>get_tasks("Aarushi")</p>
+<p>Database Result:</p>
+<p>API integration testing</p>
+<p>LLM Final Answer:</p>
+<p>Aarushi is currently working on:</p>
+<p>• API integration testing\
+Status: In progress</p>
+<hr />
+<h1 id="16-slack-response">16. Slack Response<a class="headerlink" href="#16-slack-response" title="Permanent link">&para;</a></h1>
+<p>Backend sends the response to Slack.</p>
+<p>Slack API:</p>
+<p>chat.postMessage</p>
+<p>Example request:</p>
+<p>{ "channel":"C123", "thread_ts":"1712343434", "text":"Aarushi is
+currently working on API integration testing" }</p>
+<hr />
+<h1 id="17-full-chatbot-system-diagram">17. Full Chatbot System Diagram<a class="headerlink" href="#17-full-chatbot-system-diagram" title="Permanent link">&para;</a></h1>
+<pre class="mermaid"><code>flowchart LR
+
+A[User in Slack] --&gt; B[Slack Event API]
+
+B --&gt; C[FastAPI Backend]
+
+C --&gt; D[LLM Agent]
+
+D --&gt; E[get_tasks]
+D --&gt; F[get_blockers]
+D --&gt; G[get_updates]
+
+E --&gt; H[(PostgreSQL)]
+F --&gt; H
+G --&gt; H
+
+H --&gt; D
+
+D --&gt; I[LLM Response]
+
+I --&gt; J[Slack API]
+
+J --&gt; K[Slack Channel Reply]</code></pre>
+<hr />
+<h1 id="18-optional-production-features">18. Optional Production Features<a class="headerlink" href="#18-optional-production-features" title="Permanent link">&para;</a></h1>
+<h3 id="automatic-standup-processing">Automatic Standup Processing<a class="headerlink" href="#automatic-standup-processing" title="Permanent link">&para;</a></h3>
+<p>Instead of a fixed 10 AM job, detect inactivity in the thread and
+process automatically.</p>
+<hr />
+<h3 id="weekly-reports">Weekly Reports<a class="headerlink" href="#weekly-reports" title="Permanent link">&para;</a></h3>
+<p>Generate reports such as:</p>
+<ul>
+<li>Weekly task summary</li>
+<li>Team productivity insights</li>
+<li>Recurring blockers</li>
+</ul>
+<hr />
+<h3 id="ai-insights">AI Insights<a class="headerlink" href="#ai-insights" title="Permanent link">&para;</a></h3>
+<p>Example:</p>
+<ul>
+<li>"Rudraksh has been blocked for 3 days."</li>
+<li>"Akshita completed 5 tasks this week."</li>
+</ul>
+<hr />
+<h1 id="19-comparable-tools">19. Comparable Tools<a class="headerlink" href="#19-comparable-tools" title="Permanent link">&para;</a></h1>
+<p>This system is similar to:</p>
+<ul>
+<li>Standuply</li>
+<li>Geekbot</li>
+<li>Range</li>
+<li>Spinach AI</li>
+</ul>
+<p>But enhanced with <strong>LLM-powered analysis and querying</strong>.</p>
+<hr />
+<h1 id="technical-part">Technical Part<a class="headerlink" href="#technical-part" title="Permanent link">&para;</a></h1>
+<ul>
+<li>FastAPI for backend</li>
+<li>Postgres for Database</li>
+<li>Langchain for creating Agent</li>
+</ul>
 
 
 
